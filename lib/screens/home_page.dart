@@ -15,12 +15,6 @@ class _HomePageState extends State<HomePage> {
   String _response = '';
   final PostCodeService _postCodeService = PostCodeService();
 
-  void updateResponse(String response) {
-    setState(() {
-      _response = response;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,9 +46,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                _postCodeService.fetchPostCode(
-                    _controller.text, updateResponse);
+              onPressed: () async {
+                final cityName = _controller.text;
+                final response = await _postCodeService.fetchCityInfo(cityName);
+                setState(() {
+                  _response = response;
+                });
               },
               child: Text('Find Post Code'),
             ),
