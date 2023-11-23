@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:post_code_app/services/post_code_service.dart';
 import 'package:post_code_app/styles/app_styles.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,6 +11,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _controller = TextEditingController();
+  String _response = '';
+  final PostCodeService _postCodeService = PostCodeService();
+
+  void updateResponse(String response) {
+    setState(() {
+      _response = response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,27 +31,63 @@ class _HomePageState extends State<HomePage> {
           "Post Code!",
           style: GoogleFonts.montserrat(
               textStyle: const TextStyle(
-            color: AppStyles.celticblue,
+            color: AppStyles.mindaro,
             letterSpacing: .5,
             fontSize: 26,
           )),
         ),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  labelText: 'Enter a city name',
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _postCodeService.fetchPostCode(
+                    _controller.text, updateResponse);
+              },
+              child: Text('Find Post Code'),
+            ),
             Text(
-              'You have pushed the button this many times:',
+              _response,
+              style: GoogleFonts.montserrat(
+                textStyle: const TextStyle(
+                  color: AppStyles.celticblue,
+                  letterSpacing: .5,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Find',
+            backgroundColor: AppStyles.celticblue,
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.call_to_action),
+              label: 'About',
+              backgroundColor: AppStyles.celticblue),
+        ],
       ),
     );
   }

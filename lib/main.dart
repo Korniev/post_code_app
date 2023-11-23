@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
         ),
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFFDDDDDD),
-          primary: const Color(0xFFA6CFD5),
+          primary: const Color(0xFF51A3A3),
           secondary: const Color(0xFFC2E7D9),
           tertiary: const Color(0xFF247BA0),
         ),
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
