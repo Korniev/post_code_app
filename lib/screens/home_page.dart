@@ -55,13 +55,27 @@ class _HomePageState extends State<HomePage> {
               },
               child: Text('Find Post Code'),
             ),
-            Text(
-              _response,
-              style: GoogleFonts.montserrat(
-                textStyle: const TextStyle(
-                  color: AppStyles.celticblue,
-                  letterSpacing: .5,
-                  fontSize: 20,
+            Expanded(
+              child: SingleChildScrollView(
+                child: RichText(
+                  text: TextSpan(
+                    style: GoogleFonts.montserrat(fontSize: 20),
+                    children: _response.split('\n').map((line) {
+                      var parts = line.split(': ');
+                      return TextSpan(
+                        children: [
+                          TextSpan(
+                            text: parts[0],
+                            style: TextStyle(color: AppStyles.carcoal),
+                          ),
+                          TextSpan(
+                            text: parts.length > 1 ? ': ${parts[1]}\n' : '\n',
+                            style: TextStyle(color: AppStyles.celticblue),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ),
