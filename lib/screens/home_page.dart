@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:post_code_app/screens/about_page.dart';
 import 'package:post_code_app/services/post_code_service.dart';
 import 'package:post_code_app/styles/app_styles.dart';
 
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 4.0,
         title: Text(
@@ -83,16 +85,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AboutPage()));
+          }
+        },
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Find',
-            backgroundColor: AppStyles.celticblue,
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.call_to_action),
