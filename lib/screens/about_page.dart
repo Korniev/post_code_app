@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:post_code_app/screens/home_page.dart';
 import 'package:post_code_app/styles/app_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -24,12 +23,11 @@ class AboutPage extends StatelessWidget {
         elevation: 4.0,
         title: Text(
           "About!",
-          style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
+          style: TextStyle(
             color: AppStyles.mindaro,
             letterSpacing: .5,
             fontSize: 26,
-          )),
+          ),
         ),
         centerTitle: true,
       ),

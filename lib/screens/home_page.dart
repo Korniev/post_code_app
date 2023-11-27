@@ -25,12 +25,11 @@ class _HomePageState extends State<HomePage> {
         elevation: 4.0,
         title: Text(
           "Post Code!",
-          style: GoogleFonts.montserrat(
-              textStyle: const TextStyle(
+          style: TextStyle(
             color: AppStyles.mindaro,
             letterSpacing: .5,
             fontSize: 26,
-          )),
+          ),
         ),
         centerTitle: true,
       ),
