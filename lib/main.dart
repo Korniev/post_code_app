@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
           tertiary: const Color(0xFF247BA0),
         ),
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

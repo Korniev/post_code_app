@@ -21,9 +21,9 @@ class AboutPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 4.0,
-        title: Text(
+        title: const Text(
           "About!",
-          style: TextStyle(
+          style: const TextStyle(
             color: AppStyles.mindaro,
             letterSpacing: .5,
             fontSize: 26,
@@ -56,7 +56,7 @@ class AboutPage extends StatelessWidget {
             ),
             InkWell(
               onTap: _launchURL,
-              child: Text(
+              child: const Text(
                 "Visit my GitHub",
                 textAlign: TextAlign.center,
                 style: TextStyle(
